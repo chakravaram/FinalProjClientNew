@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('#pmsg').hide();
+
+    $("button").click(function(){
+        $('#pmsg').show();
+        $('#vij').hide();
+
+        
+    });
+});
+</script>
+</head>
+<body>
+
+<textarea rows="4" cols="50" id=pmsg>
+
+</textarea>
+
+<button id="vij">Show</button>
+
+</body>
+</html>
+
+$("vij").hide();
+    $("pmsg").show();
+    $("m1").show();
+   <button action="Like.jsp?postid=<%=pst.getPost_id()%>">Like</button>
+        <button action="AllLikes.jsp?postid=<%=pst.getPost_id()%>">Who Liked</button>
+          <button onclick="fun('<%=pst.getPost_id() %>')" id="<%=pst.getPost_id()%>" type="submit"> click</button>
