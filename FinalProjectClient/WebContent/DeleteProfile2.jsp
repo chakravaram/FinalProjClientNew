@@ -5,6 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+
+
 </head>
 <body>
 
@@ -13,6 +15,7 @@ ksu.chakravaram.client.modelclasses.Profiles,
                  
  				ksu.chakravaram.client.DAO.DAO"
 %>
+
 <%
 
 String s=request.getParameter("id");
@@ -21,13 +24,21 @@ DAO dao=new DAO();
 int i=dao.deleteProfile(id);
 
 if(i==1)
+{
 	 response.sendRedirect("DeleteProfile.jsp");
-else
-	 response.sendRedirect("ProfileDeleteFail.jsp");
 
+}
+else{
 
+	 //response.sendRedirect("ProfileCreationError.jsp");
+	 %>
+	 <p><font size="6" color="#142170">Error Occured in Deleting!</font></p></br></br>
+	 <%
+}
 
 %>
+ 	 </div>
+         </div>  
 
 </body>
 </html>

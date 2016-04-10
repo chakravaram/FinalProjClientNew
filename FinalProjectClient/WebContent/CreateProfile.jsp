@@ -21,7 +21,8 @@ java.util.Date,
 java.text.SimpleDateFormat,
 javax.xml.bind.JAXBContext,
 				javax.xml.bind.Unmarshaller,
-                 
+				java.io.FileInputStream,
+                 java.io.File,
  				ksu.chakravaram.client.DAO.DAO"
 %>
 
@@ -33,18 +34,38 @@ String fname=request.getParameter("fname");
 String lname=request.getParameter("lname");
 String uname=request.getParameter("uname");
 String pwd=request.getParameter("pwd");
-int phno=Integer.parseInt(request.getParameter("phno"));
-
+String phno=request.getParameter("phno");
+String path=request.getParameter("path");
 Date date = formatter.parse(d1);
 
-	System.out.println(date+""+fname+""+lname+""+uname+""+pwd+""+phno);
+
+File file = new File("D:/LocalGitRepo/FinalProjectClient/FinalProjectClient/WebContent/images/"+path);
+byte[] bFile = new byte[(int) file.length()];
+
+try {
+ FileInputStream fileInputStream = new FileInputStream(file);
+ //convert file into array of bytes
+ fileInputStream.read(bFile);
+ fileInputStream.close();
+} catch (Exception e) {
+ e.printStackTrace();
+}
+
+	System.out.println(date+""+fname+""+lname+""+uname+""+pwd+""+phno+""+path);
 	ProfilePost p=new ProfilePost();
+	
+	
+	
+	
+	
 	p.setDob(date);
 	p.setFirstname(fname);
 	p.setLastname(lname);
 	p.setUsername(uname);
 	p.setPassword(pwd);
 	p.setPhno(phno);
+	p.setImage(bFile);
+	
 	
 	 Client client = Client.create();
      WebResource webResource = client

@@ -36,8 +36,7 @@ try{
 <image src="C:/Users/chakravaram/Desktop/vij<%=id %>.jpg" height="42" width="42"/></br></br></br></br>
 
 <%
-File f=new File("C:/Users/chakravaram/Desktop/vij0.jpg");
-f.delete();
+
 
  id=01;
  p=a.viewProfile(id);
@@ -53,10 +52,7 @@ try{
 
 %>
 <image src="C:/Users/chakravaram/Desktop/vij<%=id%>.jpg" height="42" width="42"/></br></br></br></br>
-<%
-f=new File("C:/Users/chakravaram/Desktop/vij1.jpg");
-f.delete();
-%>
+
 
 </body>
 </html>

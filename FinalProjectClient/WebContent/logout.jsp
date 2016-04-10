@@ -5,13 +5,32 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link href="css/style1.css" rel='stylesheet' type='text/css'>
+<script src="js/login.js"></script>
 </head>
 <body>
+<body> 
+<div class="header"></div>
+<div class="header1">
+<div id="headertext" class="header1" >Thank You!</div>
+</div>
+<div class="bodyx">
 
-<% session.invalidate();  %>
- <h1>Logout was done successfully.</h1>
-<a href="Login.jsp">LOGIN AGAIN</a>
-
+ <center> 
+ 
+ <div class="login">
+ <h1>Login Again!</h1>
+  <br/><br/> <br/>
+  
+ <form action="LoginCheck.jsp" onsubmit="return validate()" method="post"> <br/>
+     Username:  <input type="text" name="username" id="username" > 
+     <br/><br/>
+     	Password:   <input type="password" name="password" id="password" > <br/><br/>
+     	<input type="submit" value="Submit"> 
+  </form> 
+  </div>
+  
+  </center> 
 
 </body>
 </html>

@@ -19,23 +19,28 @@ public class ProfilePost {
 	@XmlElement
 	private String lastname;
 	@XmlElement
-	private int phno;
+	private String phno;
 	@XmlElement
 	private Date dob;	
 	@XmlElement
 	private String username;
 	@XmlElement
 	private String password;
+	@XmlElement
+	byte[] image;
 	
 	
 
+public void setImage(byte[] image) {
+		this.image = image;
+	}
 public void setFirstname(String firstname) {
 	this.firstname = firstname;
 }
 public void setLastname(String lastname) {
 	this.lastname = lastname;
 }
-public void setPhno(int phno) {
+public void setPhno(String phno) {
 	this.phno = phno;
 }
 public void setDob(Date dob) {

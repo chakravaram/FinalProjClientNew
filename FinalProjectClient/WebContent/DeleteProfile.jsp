@@ -5,20 +5,53 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link href="css/style1.css" rel='stylesheet' type='text/css'>
+
+
 </head>
 <body>
+
+
 <%@page import= "java.io.StringReader,
 ksu.chakravaram.client.modelclasses.Profiles,
 ksu.chakravaram.client.modelclasses.ListProfiles,
+java.io.FileOutputStream,
 
 
 
                  
  				ksu.chakravaram.client.DAO.DAO"
 %>
+<div class="header"></div>
+<div class="header1">
+<%Profiles c=(Profiles)session.getAttribute("Profile"); %>
+<div id="headertext" class="header1" >Welcome <%=c.getFirstname()+" "+c.getLastname() %> </div>
+</div>
+
+<div class="header3">
+
+<a href="logout.jsp" class="button">LOGOUT</a>
+</div>
+
+<div class="leftcolumn">
+<table>
+</br></br>
+<a href="AddPost.jsp" class="button" method="post">AddPost</a>
+<a href="ViewAllPosts.jsp" class="button" method="post">ViewAllPosts</a>
+<a href="ViewAllMessages.jsp" class="button" method="post">ViewAllMessages</a>
+
+<% if(session.getAttribute("role").equals("admin")){ %>
+<a href="CreateProfileForm.jsp" class="button" method="post">CreateNewProfile</a>
+<a href="DeleteProfile.jsp" class="button" method="post">DeleteProfile</a>
+<%} %>
+</table>
+</div>
 
 
+<div class="maincolumn">
 
+
+<table width="30%"  cellspacing="10">
 
 
 <%
@@ -28,26 +61,65 @@ System.out.println("jsp view all profiles");
 
 for(Profiles pf :p.getProfiles())
 {
+	if(pf.getProfile_id()!=101){
 	
     int mid=pf.getProfile_id();
+    byte [] img=pf.getImage();
+    FileOutputStream fos=null;
+    try{
+         fos = new FileOutputStream("D:/LocalGitRepo/FinalProjectClient/FinalProjectClient/WebContent/images/"+mid+".jpg"); 
+        fos.write(img);
+        fos.flush();
+        fos.close();
+    }catch(Exception e){
+        e.printStackTrace();
+    }
     
     %>
-   
-        <h1>From : <%=pf.getFirstname().toUpperCase()+" "+pf.getLastname().toUpperCase()+""+pf.getProfile_id()%></br>
-        <a href="DeleteProfile2.jsp?id=<%=mid%>"> click to delete</a>
-       
-              
-               
-        
-        
-        
     
-    <%
+    
+    <tr >
+      <td width="70"> <image src="images/<%=mid %>.jpg" height="70" width="70"/>   </td> 
+     
+      
+      <td align="center">  <a href="DeleteProfile2.jsp?id=<%=mid%>" > <%=pf.getFirstname().toUpperCase()+" "+pf.getLastname().toUpperCase()%> </a> </td>
+     
+        
+
+       <%
 }
-
+}
 %>
+</table>
 
-
+</div>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

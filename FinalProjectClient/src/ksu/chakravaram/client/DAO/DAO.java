@@ -1,13 +1,31 @@
 package ksu.chakravaram.client.DAO;
 
 import java.io.StringReader;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
+
+
+
+
+
+
+
+
+
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
+import com.sun.jersey.api.client.config.DefaultClientConfig;
+import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
+import com.sun.jersey.client.urlconnection.HTTPSProperties;
 
 import ksu.chakravaram.client.modelclasses.IntegerValue;
 import ksu.chakravaram.client.modelclasses.ListComments;
@@ -17,6 +35,7 @@ import ksu.chakravaram.client.modelclasses.ListProfiles;
 import ksu.chakravaram.client.modelclasses.Profiles;
 
 public class DAO {
+	
 
 	public Profiles viewProfile(int id)
 	
@@ -148,16 +167,19 @@ public ListProfiles viewAllProfiles()
 public int deleteProfile(int id)
 
 {
+	
+	
   int m=0;
-	Client client = Client.create();
-	  System.out.println("deteting id "+id);
-	  
+   
+    
+	Client client = Client.create();	
+	System.out.println("deteting id "+id);	
 	WebResource webResource = client
 	   .resource("http://localhost:8081/WebServices_Final1/backend/profiles/delete/"+id);
-
+	
 	ClientResponse res = webResource.accept("application/xml")
 	           .delete(ClientResponse.class);
-
+	
 	if (res.getStatus() != 200) {
 	   throw new RuntimeException("Failed : HTTP error code : "
 		+ res.getStatus());

@@ -5,13 +5,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link href="css/style1.css" rel='stylesheet' type='text/css'>
 
 
-<script>
-function goBack() {
-    window.history.back();
-}
-</script>
+
 
 </head>
 <body>
@@ -25,12 +22,40 @@ function goBack() {
 				javax.xml.bind.Unmarshaller "   %>
   
   
-  
+  <%@page import="ksu.chakravaram.client.modelclasses.Profiles" %>
+<div class="header"></div>
+<div class="header1">
+<%Profiles c=(Profiles)session.getAttribute("Profile"); %>
+<div id="headertext" class="header1" >Welcome <%=c.getFirstname()+" "+c.getLastname() %> </div>
+</div>
+
+<div class="header3">
+
+<a href="logout.jsp" class="button">LOGOUT</a>
+</div>
+
+<div class="leftcolumn">
+<table>
+</br></br>
+<a href="AddPost.jsp" class="button" method="post">AddPost</a>
+<a href="ViewAllPosts.jsp" class="button" method="post">ViewAllPosts</a>
+<a href="ViewAllMessages.jsp" class="button" method="post">ViewAllMessages</a>
+<a href="SendMessage.jsp" class="button" method="post">SendMessage</a>
+<% if(session.getAttribute("role").equals("admin")){ %>
+<a href="CreateProfileForm.jsp" class="button" method="post">CreateNewProfile</a>
+<a href="DeleteProfile.jsp" class="button" method="post">DeleteProfile</a>
+<%} %>
+</table>
+</div>
+
+
+<div class="maincolumn">
+<div class="inmain">
   
   
   <%
   
-  String msg=request.getParameter("pmsg");
+  String msg=request.getParameter("pmsg").trim();
   String s=session.getAttribute("pid").toString();
   int a=Integer.parseInt(s);
   SendPost p=new SendPost();
@@ -58,24 +83,29 @@ function goBack() {
   	 {
   		// response.sendRedirect("ProfileCreated.jsp");
   	 %>
-  	 Posted!!
+  	<p><font size="6" color="#142170">Successfully Posted!</font></p></br></br>
   	 <%
   	 }
   	 else{
   	 
   		 //response.sendRedirect("ProfileCreationError.jsp");
   		 %>
-  		 Sory error in Posting
+  		<p><font size="6" color="#142170">Error Occured in Posted!</font></p></br></br>
   		 <%
   	 }
-  	 
+  	if(session.getAttribute("role").equals("admin")){
   	 %>
   	 
-  	 <form action="home.jsp" method="post">
-          <button  type="submit" >Home</button>
-          </form>
+  	 <a href="AdminHome.jsp" class="button" method="post">Home</a>
+  	 <%}else{ %>
   	 
-  	 <%
+  	  <a href="home.jsp" class="button" method="post">Home</a>
+          
+  	 
+  	 <%}%>
+  	 </div>
+          </div>
+          <%
   	 }
   	 
   	 

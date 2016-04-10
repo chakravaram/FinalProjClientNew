@@ -25,7 +25,7 @@ public class Profiles {
 	@XmlElement
 		private String lastname;
 	@XmlElement
-		private int phno;
+		private String phno;
 	@XmlElement
 		private Date dob;
 	@XmlElement
@@ -52,7 +52,7 @@ public class Profiles {
 		return lastname;
 	}
 	
-	public int getPhno() {
+	public String getPhno() {
 		return phno;
 	}
 	

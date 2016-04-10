@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>AdminHome</title>
+<link href="css/style1.css" rel='stylesheet' type='text/css'>
 </head>
 <body>
 <%@page language="java" %> 
@@ -60,31 +61,33 @@ System.out.println("Output from Serverrter saving the object");
 
 
 %>
-<h2 align=center> Welcome <%=c.getFirstname()+" "+c.getLastname() %> </h2>
+<div class="header"></div>
+<div class="header1">
+<div id="headertext" class="header1" >Welcome <%=c.getFirstname()+" "+c.getLastname() %> </div>
+</div>
 
-
-<form action="AddPost.jsp" method="post">
- <input type="submit" value="AddPost">
-</form>
-
-
-<form action="ViewAllPosts.jsp" method="post">
- <input type="submit" value="ViewAllPosts">
-</form>
-
-<form action="ViewAllMessages.jsp" method="post">
- <input type="submit" value="ViewAllMessages">
-</form>
-<form action="SendMessage.jsp" method="post">
- <input type="submit" value="SendMessage">
-</form>
+<div class="header3">
+<a href="logout.jsp" class="button">LOGOUT</a>
+</div>
 
 
 
-<br/>
-            <br/>
-            <br/><br/><br/><br/><br/>
-        <a href="logout.jsp">Logout</a>
+
+<div class="leftcolumn">
+<table>
+</br></br>
+<a href="AddPost.jsp" class="button" method="post">AddPost</a>
+<a href="ViewAllPosts.jsp" class="button" method="post">ViewAllPosts</a>
+<a href="ViewAllMessages.jsp" class="button" method="post">ViewAllMessages</a>
+<a href="SendMessage.jsp" class="button" method="post">SendMessage</a>
+
+</table>
+</div>
+
+
+
+
+       
 
 <%
 

@@ -22,8 +22,8 @@
 				javax.xml.bind.Unmarshaller" %>
 
 <% 
-    String username=request.getParameter("username"); 
-	String password=request.getParameter("password"); 
+    String username=request.getParameter("username").trim(); 
+	String password=request.getParameter("password").trim(); 
     Client client = Client.create();
      WebResource webResource = client
     .resource("http://localhost:8081/WebServices_Final1/backend/profiles/"+username+"/"+password);
@@ -58,9 +58,15 @@
  System.out.println("login in success"+m.getProfile_id());
  session.setAttribute("pid", m.getProfile_id());
  if(username.equals("vijay") && password.equals("vijay"))
+ {
+	 session.setAttribute("role","admin");
+	 session.setAttribute("aid",m.getProfile_id());
  response.sendRedirect("AdminHome.jsp");
- else
-	 response.sendRedirect("home.jsp");
+ }
+ else{
+	 session.setAttribute("role","user");
+	
+	 response.sendRedirect("home.jsp");}
 	 
  }
  
